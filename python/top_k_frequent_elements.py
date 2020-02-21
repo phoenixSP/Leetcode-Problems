@@ -27,6 +27,29 @@ class Solution:
         return res
     
     
-    #counter implementation
-    from collections import Counter  
-    return [x[0] for x in Counter(nums).most_common(k)]
+        #counter implementation
+        from collections import Counter  
+        return [x[0] for x in Counter(nums).most_common(k)]
+    
+        #heap implementation
+    
+        from heapq import heapify, heappop, heappush, heappushpop, heapreplace
+        from collections import defaultdict
+        
+        counter = defaultdict(lambda: 0)
+    
+        for ele in nums: 
+            counter[ele] += 1
+            
+        minheap = []
+        
+        for key, val in counter.items():
+            if len(minheap) < k:
+                heappush(minheap, (val, key))
+                
+            elif val > minheap[0][0]:
+                #same performance
+                #heappushpop(minheap, (val, key))
+                heapreplace(minheap, (val, key))
+               
+        return [x[1] for x in minheap]
