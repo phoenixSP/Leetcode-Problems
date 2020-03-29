@@ -23,8 +23,7 @@ class Solution:
                 curr_len += 1
                 
             chars[ch] = i
-            if max_len < curr_len:
-                max_len = curr_len 
+            max_len = max( max_len, curr_len)
             
         return max_len
                         
