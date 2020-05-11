@@ -7,7 +7,25 @@ Created on Thu Apr  2 14:58:30 2020
 
 class Solution:
     def maxDepth(self, root: TreeNode) -> int:
-        if root is None: 
+        #bottom up approach
+        if root is None:
             return 0
-        
+
         return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
+
+        """
+        #bottom down approach
+        def util(root, depth):
+            if root is None:
+                return
+
+            if root.left is None and root.right is None:
+                self.answer = max(self.answer, depth)
+
+            util(root.left, depth + 1)
+            util(root.right, depth + 1)
+
+        util(root, 1)
+
+        return self.answer
+        """
