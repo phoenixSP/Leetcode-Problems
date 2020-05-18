@@ -32,7 +32,42 @@ class Solution:
         return root
     
     
-    #optimized code: O(1) memory
+    #optimized code: O(1) memory Not optimized according to leetcode ????
+    
+    if not root:
+            return root
+        
+        lastHead = root
+        lastCurrent = None
+        currentHead = None
+        current = None
+        
+        while lastHead:
+            lastCurrent = lastHead 
+            
+            while lastCurrent:
+                if lastCurrent.left:
+                    if currentHead is None:
+                        currentHead = lastCurrent.left
+                        current = lastCurrent.left
+                    else:
+                        current.next = lastCurrent.left
+                        current = current.next
+                        
+                if lastCurrent.right:
+                    if currentHead is None:
+                        currentHead = lastCurrent.right
+                        current = lastCurrent.right
+                    else:
+                        current.next = lastCurrent.right
+                        current = current.next
+                
+                lastCurrent = lastCurrent.next
+                
+            lastHead = currentHead
+            currentHead = None
+        
+        return root
     
     
     
