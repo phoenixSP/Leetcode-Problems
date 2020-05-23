@@ -36,4 +36,25 @@ class Solution:
         
         for i in sorted(tree_dict):
             final.append(sorted(tree_dict[i]))
+        return final  
+
+#optimized code
+class Solution:
+    def verticalTraversal(self, root: TreeNode) -> List[List[int]]:
+        
+        treeDict = defaultdict(list)
+        
+        def dfs(root, number, level):
+            treeDict[number].append([root.val, level])
+            if root.left:
+                dfs(root.left, number - 1, level + 1)
+            if root.right:
+                dfs(root.right, number + 1, level + 1)
+            
+        res = dfs(root, 0, 0)
+
+        final = []
+        for idx in sorted(treeDict):
+            final.append([val for val,level in sorted(treeDict[idx], key = lambda x:(x[1], x[0]))])
+            
         return final          
