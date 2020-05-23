@@ -91,6 +91,9 @@ class Codec:
     
     
     
+#Preorder method  
+class Codec:
+
     
     def serialize(self, root):
         """Encodes a tree to a single string.
@@ -98,11 +101,10 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
-        
         def serializeUtil(root):
             
             if not root:
-                return None
+                return ["None"]
             
             res = []
             
@@ -114,6 +116,35 @@ class Codec:
                 res.append("None")
                 
             return res
+        
+        serialize =  serializeUtil(root)
+        return ",".join(serialize)
+        
+        
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: TreeNode
+        """
+        
+        if not data:
+            return None
+        
+        data = data.split(',')
+        
+        def deserializeUtil():
+            val = data.pop(0)
+            if val == "None":
+                root = None
+            else:
+                root = TreeNode(int(val))
+                root.left = deserializeUtil()
+                root.right = deserializeUtil()
+
+            return root
+        
+        return deserializeUtil()
         
         serialize =  serializeUtil(root)
         return ",".join(serialize)
