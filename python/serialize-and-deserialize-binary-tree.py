@@ -68,3 +68,52 @@ class Codec:
                 q.append(node.right)
                 
         return root
+    
+#        #serialized_nodes = list(map(lambda x : None if x == "None" else int(x), nodes))
+#        
+#        serialized_nodes = nodes
+#        
+#        root = TreeNode(int(serialized_nodes.pop(0)))
+#        q = [root]
+#        
+#        while serialized_nodes and q:
+#            node = q.pop(0)
+#            left_val = serialized_nodes.pop(0)
+#            right_val = serialized_nodes.pop(0)
+#            
+#            if left_val != "None":
+#                node.left = TreeNode(int(left_val))
+#                q.append(node.left)
+#                
+#            if right_val != "None":
+#                node.right = TreeNode(int(right_val))
+#                q.append(node.right)
+    
+    
+    
+    
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        
+        def serializeUtil(root):
+            
+            if not root:
+                return None
+            
+            res = []
+            
+            if root:
+                res.append(str(root.val))
+                res = res + serializeUtil(root.left)
+                res = res + serializeUtil(root.right)
+            else:
+                res.append("None")
+                
+            return res
+        
+        serialize =  serializeUtil(root)
+        return ",".join(serialize)
