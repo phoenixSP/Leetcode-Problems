@@ -35,3 +35,36 @@ class Solution:
             temp.next = ListNode(carry)
             
         return res
+
+
+
+"""
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        
+        res = None
+        prev = res
+        add = 0
+        
+        while l1 or l2 or add:
+            
+            if l1:
+                add += l1.val 
+                l1 = l1.next
+                
+            if l2: 
+                add += l2.val 
+                l2 = l2.next
+                
+            temp = ListNode(add%10)
+            add = add//10
+            
+            if res is None:
+                res = temp
+            else:
+                prev.next = temp
+                
+            prev = temp
+            
+        return res
+
+"""
