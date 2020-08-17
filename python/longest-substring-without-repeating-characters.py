@@ -30,17 +30,24 @@ class Solution:
         
         
 #two pointer method
-        d = {}
-        p1 = p2 = m = 0
+    def lengthOfLongestSubstring(self, s: str) -> int:
         
-        while p2 < len(s):
-            if s[p2] not in d:
-                d[s[p2]] = True
-                p2 += 1
-                m = max(len(d), m)
+        # experiment was performed by changing the charset from dictionary to list
+        # the average time complexity for deleting an element from a list is O(n) while it is O(1) for a dictionary
+        
+        charset = {}
+        
+        start = end = length = 0
+        
+        while end < len(s):
+            
+            if s[end] not in charset:
+                charset[s[end]] = True
+                end += 1
+                length = max(length, len(charset))
             else:
-                del d[s[p1]]
-                p1 += 1
-                            
-        return m
+                del charset[s[start]]
+                start += 1
+                
+        return length
                 
